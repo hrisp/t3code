@@ -101,9 +101,24 @@ function MenuItem({
         density === "touch" && "min-h-10 sm:min-h-10",
         className,
       )}
+      data-density={density}
       data-inset={inset}
       data-slot="menu-item"
       data-variant={variant}
+      {...props}
+    />
+  );
+}
+
+// Trim font leading so visible letters center with the icons in touch rows.
+// Symmetric padding keeps accents and descenders inside truncated labels.
+function MenuItemLabel({ className, ...props }: React.ComponentProps<"span">) {
+  return (
+    <span
+      className={cn(
+        "min-w-0 in-data-[density=touch]:[text-box:trim-both_cap_alphabetic] supports-[text-box:trim-both_cap_alphabetic]:in-data-[density=touch]:py-[0.5em]",
+        className,
+      )}
       {...props}
     />
   );
@@ -275,6 +290,7 @@ function MenuSubTrigger({
         density === "touch" && "min-h-10 sm:min-h-10",
         className,
       )}
+      data-density={density}
       data-inset={inset}
       data-slot="menu-sub-trigger"
       {...props}
@@ -325,6 +341,7 @@ export {
   MenuGroup,
   MenuGroup as DropdownMenuGroup,
   MenuItem,
+  MenuItemLabel,
   MenuItem as DropdownMenuItem,
   MenuCheckboxItem,
   MenuCheckboxItem as DropdownMenuCheckboxItem,

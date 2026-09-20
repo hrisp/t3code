@@ -21,6 +21,7 @@ import { Group, GroupSeparator } from "../ui/group";
 import {
   Menu,
   MenuItem,
+  MenuItemLabel,
   MenuPopup,
   MenuShortcut,
   MenuSub,
@@ -305,7 +306,7 @@ export const OpenInPicker = memo(function OpenInPicker({
               onClick={() => openInEditor(value)}
             >
               <Icon aria-hidden="true" className={getOpenInIconClass(kind)} />
-              {label}
+              <MenuItemLabel>{label}</MenuItemLabel>
               {value === preferredEditor && openFavoriteEditorShortcutLabel && (
                 <MenuShortcut>{openFavoriteEditorShortcutLabel}</MenuShortcut>
               )}
@@ -331,7 +332,7 @@ export const OpenInPicker = memo(function OpenInPicker({
             onClick={() => openInEditor(preferredEditor)}
           >
             <primaryOption.Icon className={cn("size-4", getOpenInIconClass(primaryOption.kind))} />
-            <span className="truncate">Open in {primaryOption.label}</span>
+            <MenuItemLabel className="truncate">Open in {primaryOption.label}</MenuItemLabel>
             {openFavoriteEditorShortcutLabel && (
               <MenuShortcut>{openFavoriteEditorShortcutLabel}</MenuShortcut>
             )}
@@ -340,7 +341,7 @@ export const OpenInPicker = memo(function OpenInPicker({
         <MenuSub>
           <MenuSubTrigger density="touch">
             <SquareArrowOutUpRightIcon className="size-4" />
-            Open in…
+            <MenuItemLabel>Open in…</MenuItemLabel>
           </MenuSubTrigger>
           <MenuSubPopup className="min-w-32 max-w-[calc(100vw-2rem)]">{editorItems}</MenuSubPopup>
         </MenuSub>

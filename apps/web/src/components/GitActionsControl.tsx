@@ -82,6 +82,7 @@ import { Input } from "~/components/ui/input";
 import {
   Menu,
   MenuItem,
+  MenuItemLabel,
   MenuPopup,
   MenuSub,
   MenuSubTrigger,
@@ -1674,7 +1675,7 @@ export default function GitActionsControl({
             <div key={`${item.id}-${item.label}`}>
               <MenuItem density={presentation === "menu" ? "touch" : "default"} disabled>
                 <GitActionItemIcon icon={item.icon} SourceControlIcon={SourceControlIcon} />
-                {item.label}
+                <MenuItemLabel>{item.label}</MenuItemLabel>
               </MenuItem>
               <p className="max-w-64 px-2 pb-2 text-xs text-muted-foreground">{disabledReason}</p>
             </div>
@@ -1694,7 +1695,7 @@ export default function GitActionsControl({
                   disabled
                 >
                   <GitActionItemIcon icon={item.icon} SourceControlIcon={SourceControlIcon} />
-                  {item.label}
+                  <MenuItemLabel>{item.label}</MenuItemLabel>
                 </MenuItem>
               </PopoverTrigger>
               <PopoverPopup tooltipStyle side="left" align="center">
@@ -1714,7 +1715,7 @@ export default function GitActionsControl({
             }}
           >
             <GitActionItemIcon icon={item.icon} SourceControlIcon={SourceControlIcon} />
-            {item.label}
+            <MenuItemLabel>{item.label}</MenuItemLabel>
           </MenuItem>
         );
       })}
@@ -1727,7 +1728,7 @@ export default function GitActionsControl({
           }}
         >
           <CloudUploadIcon />
-          Publish repository...
+          <MenuItemLabel>Publish repository...</MenuItemLabel>
         </MenuItem>
       ) : null}
       {gitStatusForActions?.refName === null && (
@@ -1759,7 +1760,9 @@ export default function GitActionsControl({
             onClick={initializeGit}
           >
             <GitBranchPlusIcon className="size-4" />
-            {initAction.isPending ? "Initializing..." : "Initialize Git"}
+            <MenuItemLabel>
+              {initAction.isPending ? "Initializing..." : "Initialize Git"}
+            </MenuItemLabel>
           </MenuItem>
         ) : (
           <>
@@ -1774,7 +1777,7 @@ export default function GitActionsControl({
                 quickAction={quickAction}
                 SourceControlIcon={SourceControlIcon}
               />
-              {quickAction.label}
+              <MenuItemLabel>{quickAction.label}</MenuItemLabel>
             </MenuItem>
             {quickActionDisabledReason && (
               <p className="max-w-64 px-2 py-1.5 text-xs text-warning">
@@ -1788,7 +1791,7 @@ export default function GitActionsControl({
             >
               <MenuSubTrigger density="touch" disabled={isGitActionRunning}>
                 <SourceControlIcon className="size-4" />
-                Git actions
+                <MenuItemLabel>Git actions</MenuItemLabel>
               </MenuSubTrigger>
               <MenuSubPopup className="min-w-32 max-w-[calc(100vw-2rem)]">{gitItems}</MenuSubPopup>
             </MenuSub>

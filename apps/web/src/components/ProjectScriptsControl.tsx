@@ -28,6 +28,7 @@ import {
   MenuGroup,
   MenuGroupLabel,
   MenuItem,
+  MenuItemLabel,
   MenuPopup,
   MenuSeparator,
   MenuShortcut,
@@ -156,7 +157,7 @@ export default function ProjectScriptsControl({
             onClick={() => void importFileScript(fileScript)}
           >
             <ScriptIcon icon={fileScript.icon ?? "play"} className="size-4" />
-            <span className="truncate">{fileScript.name}</span>
+            <MenuItemLabel className="truncate">{fileScript.name}</MenuItemLabel>
             <MenuShortcut className="ms-auto">
               <DownloadIcon className="size-3.5" aria-label="Import" />
             </MenuShortcut>
@@ -181,9 +182,9 @@ export default function ProjectScriptsControl({
             onClick={() => onRunScript(script)}
           >
             <ScriptIcon icon={script.icon} className="size-4" />
-            <span className="truncate">
+            <MenuItemLabel className="truncate">
               {script.runOnWorktreeCreate ? `${script.name} (setup)` : script.name}
-            </span>
+            </MenuItemLabel>
             <span className="relative ms-auto flex h-6 min-w-6 items-center justify-end">
               {shortcutLabel && (
                 <MenuShortcut
@@ -225,7 +226,7 @@ export default function ProjectScriptsControl({
         onClick={openAddDialog}
       >
         <PlusIcon className="size-4" />
-        Add action
+        <MenuItemLabel>Add action</MenuItemLabel>
       </MenuItem>
     </>
   );
@@ -240,7 +241,7 @@ export default function ProjectScriptsControl({
               onClick={() => onRunScript(primaryScript)}
             >
               <ScriptIcon icon={primaryScript.icon} className="size-4" />
-              <span className="truncate">Run {primaryScript.name}</span>
+              <MenuItemLabel className="truncate">Run {primaryScript.name}</MenuItemLabel>
               <MenuShortcut>
                 {shortcutLabelForCommand(keybindings, commandForProjectScript(primaryScript.id))}
               </MenuShortcut>
@@ -255,7 +256,7 @@ export default function ProjectScriptsControl({
             >
               <MenuSubTrigger density="touch">
                 <ScriptIcon icon="play" className="size-4" />
-                Project actions
+                <MenuItemLabel>Project actions</MenuItemLabel>
               </MenuSubTrigger>
               <MenuSubPopup className="min-w-32 max-w-[calc(100vw-2rem)]">
                 {scriptItems}
@@ -267,7 +268,7 @@ export default function ProjectScriptsControl({
               onClick={openAddDialog}
             >
               <PlusIcon className="size-4" />
-              Add project action…
+              <MenuItemLabel>Add project action…</MenuItemLabel>
             </MenuItem>
           )}
         </>
