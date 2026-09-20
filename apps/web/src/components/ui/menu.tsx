@@ -115,6 +115,7 @@ function MenuItem({
 function MenuItemLabel({ className, ...props }: React.ComponentProps<"span">) {
   return (
     <span
+      data-slot="menu-item-label"
       className={cn(
         "min-w-0 in-data-[density=touch]:[text-box:trim-both_cap_alphabetic] supports-[text-box:trim-both_cap_alphabetic]:in-data-[density=touch]:py-[0.5em]",
         className,
